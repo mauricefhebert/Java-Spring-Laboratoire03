@@ -19,7 +19,7 @@
             <td th:text="${etudiant.telephone}"></td>
             <td th:text="${etudiant.courriel}"></td>
             <td>
-                <a class="btn btn-success" th:href="@{/afficherPanier/{nas}(nas=${etudiant.nas})}">Confirmer</a>
+                <a class="btn btn-success" th:href="@{/afficherListEtudiant/{nas}(nas=${etudiant.nas})}">Confirmer</a>
             </td>
         </tr>
         </tbody>

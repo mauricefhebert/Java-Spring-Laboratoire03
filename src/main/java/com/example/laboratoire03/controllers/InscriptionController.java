@@ -70,8 +70,10 @@ public class InscriptionController {
     public ModelAndView confirmer(@PathVariable("nas") String nas, HttpServletRequest request, HttpSession session) {
         try {
             Panier panier = this.getPanier(session);
-            Inscription inscription = new Inscription(nas, new Date(), (Arrays)panier.getListe());
+            Inscription inscription = new Inscription(nas, new Date(), panier.getListe());
             dataContext.addInscription(inscription);
+            panier.viderPanier();
+            session.setAttribute("panier", panier);
             return new ModelAndView("confirmation");
         }
         catch (Exception e) {

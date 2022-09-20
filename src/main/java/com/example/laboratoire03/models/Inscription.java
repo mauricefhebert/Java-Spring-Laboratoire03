@@ -5,6 +5,7 @@ import lombok.Setter;
 
 import java.util.Arrays;
 import java.util.Date;
+import java.util.List;
 
 // Génère les getters et les setters
 @Getter
@@ -12,11 +13,11 @@ import java.util.Date;
 public class Inscription {
     private String nas;
     private Date dateInscription;
-    private Arrays listeDeCours;
+    private List<Cours> listeDeCours;
     
     public Inscription(){}
 
-    public Inscription(String nas, Date dateInscription, Arrays listeDeCours) {
+    public Inscription(String nas, Date dateInscription, List<Cours> listeDeCours) {
         this.nas = nas;
         this.dateInscription = dateInscription;
         this.listeDeCours = listeDeCours;

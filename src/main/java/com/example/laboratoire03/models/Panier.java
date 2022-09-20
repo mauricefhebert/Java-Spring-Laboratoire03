@@ -4,6 +4,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 @Getter
@@ -24,8 +25,10 @@ public class Panier {
     }
 
     public void viderPanier() {
-        for (Cours cours : liste) {
-            liste.remove(cours);
+        Iterator<Cours> i = liste.iterator();
+        while (i.hasNext()) {
+            Cours cours = i.next();
+            i.remove();
         }
     }
 }
