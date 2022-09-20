@@ -16,8 +16,10 @@ import javax.servlet.http.HttpSession;
 @Controller
 public class CoursController {
 
-    @Autowired
-    private AppDataContext dataContext;
+    private final AppDataContext dataContext;
+    public CoursController(AppDataContext dataContext) {
+        this.dataContext = dataContext;
+    }
 
     private Panier getPanier(HttpSession session) throws Exception {
         try {

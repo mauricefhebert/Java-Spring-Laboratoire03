@@ -4,7 +4,6 @@ import com.example.laboratoire03.models.Error;
 import com.example.laboratoire03.models.Inscription;
 import com.example.laboratoire03.models.Panier;
 import com.example.laboratoire03.services.AppDataContext;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -12,16 +11,18 @@ import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-import java.util.Arrays;
 import java.util.Date;
 
 @Controller
 public class InscriptionController {
 
-    @Autowired
-    private AppDataContext dataContext;
+    private final AppDataContext dataContext;
 
-    private Panier getPanier(HttpSession session) throws Exception {
+    public InscriptionController(AppDataContext dataContext) {
+        this.dataContext = dataContext;
+    }
+
+    private Panier getPanier(HttpSession session) {
         try {
             Panier panier = new Panier();
             if(session.getAttribute("panier") != null) {
