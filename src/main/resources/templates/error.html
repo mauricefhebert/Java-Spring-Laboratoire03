@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="https://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="_layout">
+<body>
+<div layout:fragment="content">
+    <h1> Page d’erreur</h1>
+    <h2>Attention, une erreur s’est produite dans la ressource demandée. Veuillez contacter le support technique.</h2>
+    <p>L'URL source d'erreur : <span th:text="${model.url}"></span></p>
+    <p>Le message d'erreur :<span th:text="${model.exception.message}"></span></p>
+    <p>Le contrôleur source:<span th:text="${model.exception.stackTrace[0].className}"></span></p>
+    <p>la méthode source:<span th:text="${model.exception.stackTrace[0].methodName}"></span>
+    <p>Le numéro de ligne :<span th:text="${model.exception.stackTrace[0].lineNumber}"></span>
+    <hr/>
+    <a href="/"> allez à l'accueil</a>
+</div>
+</body>
+</html>

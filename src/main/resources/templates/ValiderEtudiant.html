@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:layout="https://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="_layout">
+<body>
+<div layout:fragment="content">
+    <table class="table">
+        <thead>
+        <tr>
+            <th scope="col">Prénom</th>
+            <th scope="col">Nom</th>
+            <th scope="col">Téléphone</th>
+            <th scope="col">Courriel</th>
+            <th></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="etudiant : ${listeEtudiant}">
+            <td th:text="${etudiant.prenom}"></td>
+            <td th:text="${etudiant.nom}"></td>
+            <td th:text="${etudiant.telephone}"></td>
+            <td th:text="${etudiant.courriel}"></td>
+            <td>
+                <a class="btn btn-success" th:href="@{/afficherPanier/{nas}(nas=${etudiant.nas})}">Confirmer</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>
