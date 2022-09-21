@@ -2,30 +2,35 @@
 <html lang="en" xmlns:layout="https://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="_layout">
 <body>
 <div layout:fragment="content">
-    <table class="table">
-        <thead>
-        <tr>
-            <th scope="col">Numero</th>
-            <th scope="col">Intitulé</th>
-            <th scope="col">Nombre de credit</th>
-            <th scope="col">Session</th>
-            <th></th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr th:each="item : ${panier.liste}">
-            <td th:text="${item.numero}"></td>
-            <td th:text="${item.intitule}"></td>
-            <td th:text="${item.nombreDeCredits}"></td>
-            <td th:text="${item.session}"></td>
-            <td>
-                <a class="btn btn-info" th:href="@{plandecours.pdf}" target="_blank">Plan de cours</a>
-                <a class="btn btn-danger" th:href="@{/afficherPanier/{numero}(numero=${item.numero})}">Supprimer</a>
-            </td>
-        </tr>
-        </tbody>
-    </table>
-    <a class="btn btn-success" th:href="@{/afficherListEtudiant}">Valider mes choix</a>
+    <div th:if="${panier.liste.size() eq 0}">
+        <h1>Aucun cours ajouter à la liste</h1>
+    </div>
+    <div th:if="${panier.liste.size() > 0}">
+        <table class="table">
+            <thead>
+            <tr>
+                <th scope="col">Numéro</th>
+                <th scope="col">Intitulé</th>
+                <th scope="col">Nombre de credit</th>
+                <th scope="col">Session</th>
+                <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="item : ${panier.liste}">
+                <td th:text="${item.numero}"></td>
+                <td th:text="${item.intitule}"></td>
+                <td th:text="${item.nombreDeCredits}"></td>
+                <td th:text="${item.session}"></td>
+                <td>
+                    <a class="btn btn-info" th:href="@{plandecours.pdf}" target="_blank">Plan de cours</a>
+                    <a class="btn btn-danger" th:href="@{/afficherPanier/{numero}(numero=${item.numero})}">Supprimer</a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+        <a class="btn btn-success" th:href="@{/afficherListEtudiant}">Valider mes choix</a>
+    </div>
 </div>
 </body>
 </html>

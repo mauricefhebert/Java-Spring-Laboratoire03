@@ -3,6 +3,7 @@ package com.example.laboratoire03.models;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -19,6 +20,7 @@ public class Inscription {
     public Inscription(String nas, Date dateInscription, List<Cours> listeDeCours) {
         this.nas = nas;
         this.dateInscription = dateInscription;
-        this.listeDeCours = listeDeCours;
-    }
+        this.listeDeCours = new ArrayList<>();
+        this.listeDeCours.addAll(listeDeCours);
+        }
 }

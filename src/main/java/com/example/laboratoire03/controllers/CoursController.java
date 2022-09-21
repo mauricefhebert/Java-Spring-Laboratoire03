@@ -16,11 +16,21 @@ import javax.servlet.http.HttpSession;
 @Controller
 public class CoursController {
 
+    /**
+     * Initialize le data context
+     */
     private final AppDataContext dataContext;
     public CoursController(AppDataContext dataContext) {
         this.dataContext = dataContext;
     }
 
+    /**
+     * Récupère le panier dans la session s'il existe,
+     * Sinon crée le panier et l'ajoute dans la session
+     * @param session
+     * @return Panier
+     * @throws Exception
+     */
     private Panier getPanier(HttpSession session) throws Exception {
         try {
           Panier panier = new Panier();
@@ -33,11 +43,29 @@ public class CoursController {
         }
     }
 
+    /**
+     * Affiche la liste de cours dans la vue 'listeCours'
+     * @param request
+     * @return
+     * @throws Exception
+     */
     @GetMapping("/listeDeCours")
-    public ModelAndView liste() throws Exception {
-        return new ModelAndView("listeCours", "liste", dataContext.listeCours);
+    public ModelAndView liste(HttpServletRequest request) throws Exception {
+        try {
+            return new ModelAndView("listeCours", "liste", dataContext.listeCours);
+        } catch (Exception e) {
+            return new ModelAndView("error", "model", new Error(request.getRequestURL().toString(), e));
+        }
     }
 
+    /**
+     * Recuper le panier dans la session et génère la liste de cours, ajouter un cours au panier et sauvegarde la session
+     * @param numero
+     * @param session
+     * @param request
+     * @return
+     * @throws Exception
+     */
     @GetMapping("/listeDeCours/{numero}")
     public ModelAndView ajouter(@PathVariable("numero") int numero, HttpSession session, HttpServletRequest request) throws Exception {
         try {

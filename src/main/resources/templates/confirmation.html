@@ -3,6 +3,12 @@
 <body>
 <div layout:fragment="content">
   <h1>Confirmation</h1>
+  <div class="etudiant-info">
+    <p>Félicitation, <span th:text="${etudiant.prenom}"></span> <span th:text="${etudiant.nom}"></span>! Votre inscription au cours suivant et confirmer</p>
+    <ul th:each="cours : ${listeCours}" style="list-style: none">
+      <li th:text="${cours.intitule}"></li>
+    </ul>
+  </div>
 </div>
 </body>
 </html>

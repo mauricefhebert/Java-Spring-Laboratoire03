@@ -24,6 +24,9 @@ public class Panier {
         liste.removeIf(n -> n.getNumero() == numero);
     }
 
+    /**
+     * Supprimer tous les elements de la liste
+     */
     public void viderPanier() {
         Iterator<Cours> i = liste.iterator();
         while (i.hasNext()) {
