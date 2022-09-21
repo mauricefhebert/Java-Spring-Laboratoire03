@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="https://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="_layout">
+<body>
+<div layout:fragment="content" class="row" id="admin-panel-container">
+  <div id="admin-nav-panel" class="col-2">
+    <nav class="nav flex-column">
+      <a class="nav-link" aria-current="page" th:href="@{/adminPanel/etudiant}">Ajouter un étudiant</a>
+      <a class="nav-link active" th:href="@{/adminPanel/cours}">Ajouter un cours</a>
+      <a class="nav-link" th:href="@{/adminPanel/logout}">Deconnection</a>
+    </nav>
+  </div>
+  <div class="col-10">
+    <h1>Ajouter un cours</h1>
+    <form th:action="@{/adminPanel/cours}" th:object="${model}" method="post" class="d-inline-flex flex-column">
+      <label th:for="${#numero}" class="form-label" hidden>Numero</label>
+      <input type="number" th:field="*{numero}" class="form-control" hidden/>
+
+      <label th:for="${#intitule}" class="form-label">Intitule</label>
+      <input type="text" th:field="*{intitule}" class="form-control"/>
+      <span th:if="${#fields.hasErrors('intitule')}" th:errors="*{intitule}" class="text-danger alert-danger"></span>
+
+      <label th:for="${#nombreDeCredits}" class="form-label">Nombre De Credits</label>
+      <input type="text" th:field="*{nombreDeCredits}" class="form-control"/>
+      <span th:if="${#fields.hasErrors('nombreDeCredits')}" th:errors="*{nombreDeCredits}" class="text-danger alert-danger"></span>
+
+      <label th:for="${#session}" class="form-label">Session</label>
+      <input type="text" th:field="*{session}" class="form-control"/>
+      <span th:if="${#fields.hasErrors('session')}" th:errors="*{session}"
+            class="text-danger alert-danger"></span>
+
+      <label th:for="${#planCours}" class="form-label">Plan de cours</label>
+      <input type="file" th:field="*{planCours}" class="form-control"/>
+      <span th:if="${#fields.hasErrors('planCours')}" th:errors="*{planCours}"
+            class="text-danger alert-danger"></span>
+
+      <div class="mt-3">
+        <button type="submit" class="btn btn-primary">Confirmer</button>
+        <button type="reset" class="btn btn-secondary">Annuler</button>
+      </div>
+    </form>
+  </div>
+</div>
+</body>
+</html>

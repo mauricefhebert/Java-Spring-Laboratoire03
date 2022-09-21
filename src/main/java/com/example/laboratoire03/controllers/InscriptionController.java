@@ -119,4 +119,13 @@ public class InscriptionController {
             return new ModelAndView("error", "model", new Error(request.getRequestURL().toString(), e));
         }
     }
+
+    @GetMapping("/viderPanier")
+    public String viderPanier(HttpSession session)
+    {
+        Panier panier = this.getPanier(session);
+        panier.viderPanier();
+        session.setAttribute("panier", panier);
+        return "redirect:/afficherPanier";
+    }
 }

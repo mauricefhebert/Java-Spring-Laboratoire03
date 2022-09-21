@@ -21,7 +21,8 @@
                 <td th:text="${cours.session}"></td>
                 <td th:text="${cours.planCours}"></td>
                 <td>
-                    <a class="btn btn-primary" th:href="@{/listeDeCours/{numero}(numero=${cours.numero})}">Ajouter</a>
+                    <a class="btn btn-info" th:href="@{plandecours.pdf}" target="_blank">Détail</a>
+                    <a class="btn btn-primary" th:href="@{/listeDeCours/{numero}(numero=${cours.numero})}">Choisir</a>
                 </td>
             </tr>
             </tbody>

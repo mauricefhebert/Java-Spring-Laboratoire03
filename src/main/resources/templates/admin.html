@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="https://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="_layout">
+<body>
+<div layout:fragment="content" class="d-flex justify-content-center">
+    <form th:action="@{/admin}" th:object="${model}" method="post" class="d-inline-flex flex-column">
+        <label th:for="${#username}" class="form-label">Username</label>
+        <input type="text" th:field="*{username}" class="form-control" autocomplete="off"/>
+        <span th:if="${#fields.hasErrors('username')}" th:errors="*{username}" class="text-danger alert-danger"></span>
+
+        <label th:for="*{password}" class="form-label">Password</label>
+        <input type="password" th:field="*{password}" class="form-control"/>
+        <span th:if="${#fields.hasErrors('password')}" th:errors="*{password}" class="text-danger alert-danger"></span>
+
+        <div class="d-inline-flex justify-content-evenly mt-3">
+            <button class="btn btn-primary">Connection</button>
+            <button type="reset" class="btn btn-secondary">Annuler</button>
+        </div>
+    </form>
+</div>
+</body>
+</html>

@@ -12,6 +12,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.util.List;
 
 @Controller
 public class CoursController {
@@ -71,6 +72,7 @@ public class CoursController {
         try {
             Panier panier = this.getPanier(session);
             Cours cours = dataContext.getCours(numero);
+            List<Cours> liste = panier.getListe();
             panier.ajouterCours(cours);
             session.setAttribute("panier", panier);
             return new ModelAndView("redirect:/listeDeCours");
