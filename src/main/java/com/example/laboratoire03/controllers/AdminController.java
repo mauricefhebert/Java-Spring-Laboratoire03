@@ -27,10 +27,14 @@ public class AdminController {
     public AdminController(AppDataContext dataContext) {
         this.dataContext = dataContext;
     }
-
     @GetMapping("/admin")
     public ModelAndView admin(Model model, HttpServletRequest request, HttpSession session) {
         try {
+            if(session.getAttribute("adminSession") != null)
+            {
+                return new ModelAndView("redirect:/adminPanel/etudiant");
+            }
+
             model.addAttribute("model", new Admin());
             return new ModelAndView("admin");
         } catch (Exception e) {
@@ -45,6 +49,7 @@ public class AdminController {
             if (result.hasErrors()) {
                 return new ModelAndView("admin");
             }
+            session.setAttribute("adminSession", admin);
             return new ModelAndView("redirect:/adminPanel/etudiant");
         } catch (Exception e) {
             return new ModelAndView("error", "model", new Error(request.getRequestURL().toString(), e));
@@ -90,5 +95,16 @@ public class AdminController {
         } catch (Exception e) {
             return new ModelAndView("error", "model", new Error(request.getRequestURL().toString(), e));
         }
+    }
+
+    @GetMapping("/adminPanel/logout")
+    public ModelAndView adminPanelLogout(HttpSession session)
+    {
+        if(session.getAttribute("adminSession") != null)
+        {
+            session.removeAttribute("adminSession");
+            return new ModelAndView("redirect:/admin");
+        }
+        return new ModelAndView("redirect:/adminPanel/etudiant");
     }
 }
