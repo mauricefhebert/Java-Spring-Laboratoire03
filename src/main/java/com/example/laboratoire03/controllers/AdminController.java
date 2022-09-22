@@ -87,7 +87,9 @@ public class AdminController {
         if(session.getAttribute("adminSession") == null)
             return new ModelAndView("accessDenied");
 
-        model.addAttribute("model", new Etudiant());
+        Etudiant etudiant = new Etudiant();
+        etudiant.setGenre("Masculin");
+        model.addAttribute("model", etudiant);
         return new ModelAndView("adminPanelFormEtudiant");
     }
 
