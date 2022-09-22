@@ -25,9 +25,11 @@
       <span th:if="${#fields.hasErrors('nombreDeCredits')}" th:errors="*{nombreDeCredits}" class="text-danger alert-danger"></span>
 
       <label th:for="${#session}" class="form-label">Session</label>
-      <input type="text" th:field="*{session}" class="form-control"/>
-      <span th:if="${#fields.hasErrors('session')}" th:errors="*{session}"
-            class="text-danger alert-danger"></span>
+      <select th:field="*{session}" class="form-control">
+        <option th:each="sessionCegep : ${sessionCegep.entrySet()}"
+                th:value="${sessionCegep.key}"
+                th:text="${sessionCegep.value}"></option>
+      </select>
 
       <label th:for="${#planCours}" class="form-label">Plan de cours</label>
       <input type="text" th:field="*{planCours}" class="form-control"/>

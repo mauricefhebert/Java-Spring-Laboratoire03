@@ -18,6 +18,7 @@ import org.springframework.web.servlet.ModelAndView;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
+import java.util.HashMap;
 
 @Controller
 public class AdminController {
@@ -128,6 +129,13 @@ public class AdminController {
         int nextNum = dataContext.listeCours.size() + 1;
         Cours cours = new Cours();
         cours.setNumero(nextNum);
+        HashMap<String, String> sessionCegep = new HashMap<>();
+        sessionCegep.put("hiver", "Hiver");
+        sessionCegep.put("ete", "Été");
+        sessionCegep.put("automne", "Automne");
+        sessionCegep.put("printemps", "Printemps");
+
+        model.addAttribute("sessionCegep", sessionCegep);
         model.addAttribute("cours", cours);
         return new ModelAndView("adminPanelFormCours");
     }
