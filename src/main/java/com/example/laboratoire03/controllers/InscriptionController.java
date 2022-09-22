@@ -112,7 +112,6 @@ public class InscriptionController {
             dataContext.addInscription(inscription);
             model.addAttribute("listeCours", inscription.getListeDeCours());
             panier.viderPanier();
-            session.setAttribute("panier", panier);
             return new ModelAndView("confirmation", "etudiant", etudiant);
         }
         catch (Exception e) {
@@ -120,6 +119,11 @@ public class InscriptionController {
         }
     }
 
+    /**
+     * Vide le panier de la session
+     * @param session
+     * @return
+     */
     @GetMapping("/viderPanier")
     public String viderPanier(HttpSession session)
     {
