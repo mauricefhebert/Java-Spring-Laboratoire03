@@ -7,12 +7,12 @@
         <nav class="nav flex-column">
             <a class="nav-link active" aria-current="page" th:href="@{/adminPanel/etudiant}">Ajouter un étudiant</a>
             <a class="nav-link" th:href="@{/adminPanel/cours}">Ajouter un cours</a>
-            <a class="nav-link" th:href="@{/adminPanel/logout}">Deconnection</a>
+<!--            <a class="nav-link" th:href="@{/adminPanel/logout}">Deconnection</a>-->
         </nav>
     </div>
     <div class="col-10">
         <h1>Ajouter un étudiant</h1>
-        <form th:action="@{/adminPanel/etudiant}" th:object="${etudiant}" method="post" class="d-inline-flex flex-column">
+        <form th:action="@{/adminPanel/etudiant}" th:object="${model}" method="post" class="d-inline-flex flex-column">
             <label th:for="${#nas}" class="form-label">NAS</label>
             <input type="text" th:field="*{nas}" class="form-control" autocomplete="off"/>
             <span th:if="${#fields.hasErrors('nas')}" th:errors="*{nas}" class="text-danger alert-danger"></span>
