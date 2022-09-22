@@ -8,6 +8,11 @@ import javax.servlet.http.HttpSession;
 
 @Controller
 public class HomeController {
+    /**
+     * Retourne la page d'accueil
+     * @param session
+     * @return
+     */
     @GetMapping("/")
     public String Accueil(HttpSession session) {
         Panier panier = new Panier();

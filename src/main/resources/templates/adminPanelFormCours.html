@@ -12,7 +12,7 @@
   </div>
   <div class="col-10">
     <h1>Ajouter un cours</h1>
-    <form th:action="@{/adminPanel/cours}" th:object="${model}" method="post" class="d-inline-flex flex-column">
+    <form th:action="@{/adminPanel/cours}" th:object="${cours}" method="post" enctype='multipart/form-data' class="d-inline-flex flex-column">
       <label th:for="${#numero}" class="form-label" hidden>Numero</label>
       <input type="number" th:field="*{numero}" class="form-control" hidden/>
 
@@ -30,7 +30,7 @@
             class="text-danger alert-danger"></span>
 
       <label th:for="${#planCours}" class="form-label">Plan de cours</label>
-      <input type="file" th:field="*{planCours}" class="form-control"/>
+      <input type="text" th:field="*{planCours}" class="form-control"/>
       <span th:if="${#fields.hasErrors('planCours')}" th:errors="*{planCours}"
             class="text-danger alert-danger"></span>
 
